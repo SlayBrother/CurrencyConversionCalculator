@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Conversion Calculator{% endblock %}
+
+{% block content %}
+
+<h1>Convert your currency!</h1>
+<h4>When converting, please remember to use the letter abbreviation of the currencies you're trying to convert</h4>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    <ul class=flashes>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    
+<form method="GET" class="convertfrom">
+    <label for="conver_from1">Convert From</label>
+    <input type="text" id="from_input" name="from_input" placeholder="Enter letter abbreviation... " value="{{ convertfrom }}">
+<br>
+    <label for="conver_to1">Convert To</label>
+    <input type="text" id="to_input" name="to_input" placeholder="Enter letter abbreviation... " value="{{ convertto }}">
+<br>
+    <label for="conver_amount">Amount</label>
+    <input type="text" id="amount_input" name="amount_input" placeholder="Enter Amount of Money..." value="{{ amount }}">
+<br>
+    <label for="conver_total">Converted Amount</label>
+    <input type="text" id="converted_input" name="converted_input" placeholder="Converted Total..." {% if symboled_amount %}value="{{ symboled_amount }}"{% endif %}>
+<br>
+    <input type="submit" value="Convert Currency">
+</form>
+
+
+
+{% endblock %}
